@@ -1,14 +1,10 @@
 // @ts-check
 import { expect } from '@playwright/test';
-export class MoviesPage {
+export class Movies {
     constructor(page) {
         this.page = page
     }
-    async isLoggedIn() {
-        await expect(this.page.locator('a[href="/logout"]')).toBeVisible()
-        await this.page.waitForLoadState('networkidle')
-        await expect(this.page).toHaveURL(/.*admin/)
-    }
+   
     async goForm() {
         await this.page.locator('a[href$="register"]').click()
     }
