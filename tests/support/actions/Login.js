@@ -9,10 +9,10 @@ export class Login {
         const loginForm = this.page.locator('.login-form');
         await expect(loginForm).toBeVisible();
     }
-    async do (email,password){
+    async do (email,password,username){
     await this.visit()
     await this.submit(email, password)
-    await this.isLoggedIn()
+    await this.isLoggedIn(username)
     }
     async submit(email, senha) {
         await this.page.getByPlaceholder('E-mail').fill(email)
@@ -29,10 +29,11 @@ export class Login {
     async alertHaveText(text){
         await expect(this.page.locator('span[class$=alert]')).toHaveText(text)
     }
-     async isLoggedIn() {
+     async isLoggedIn(username) {
         await expect(this.page.locator('a[href="/logout"]')).toBeVisible()
         await this.page.waitForLoadState('networkidle')
         await expect(this.page).toHaveURL(/.*admin/)
+        await expect(this.page.locator('.logged-user')).toHaveText(`Olá, ${username}`)
     }
 
 }
