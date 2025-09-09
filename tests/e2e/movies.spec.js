@@ -8,7 +8,7 @@ test('Deve poder cadastrar um novo filme', async ({ page }) => {
     await executeSql(`DELETE from movies where title ='${data.create.title}'`)
 
     await page.login.do('admin@zombieplus.com', 'pwd123','Admin')
-    await page.movies.create(movie.title, movie.overview, movie.company, movie.release_year)
+    await page.movies.create(movie.title, movie.overview, movie.company, movie.release_year, movie.cover, movie.featured)
     await page.toast.containText('Cadastro realizado com sucesso!')
 })
 
