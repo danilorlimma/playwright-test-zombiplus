@@ -2,8 +2,8 @@ const { Pool } = require('pg')
 
 const DbConfig = {
     user: 'postgres',
-    host: 'pgdb',
-    database: 'postgres',
+    host: 'localhost',
+    database: 'zombieplus',
     password: 'pwd123',
     port: 5432
 }
