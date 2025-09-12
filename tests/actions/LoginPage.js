@@ -29,5 +29,10 @@ export class LoginPage {
     async alertHaveText(text){
         await expect(this.page.locator('span[class$=alert]')).toHaveText(text)
     }
+    async do(email,senha){
+        await this.visit()
+        await this.submit(email,senha)
+        await this.isLoggedIn()
+    }
 
 }
