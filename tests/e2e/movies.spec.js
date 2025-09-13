@@ -1,4 +1,4 @@
-import { test, expect } from '../support';
+import { test, expect,request } from '../support';
 
 const data = require('../support/fixtures/movies.json')
 const { executeSql } = require('../support/database')
@@ -17,6 +17,7 @@ test('Não deve cadastrar quando o título é duplicado', async ({ page, request
 
     await executeSql(`DELETE from movies where title ='${data.exterminio.title}'`)
 
+    await request.api.setToken()
     
     //console.log(await response.text());
     
