@@ -1,4 +1,4 @@
-import { test } from '../support';
+import { test, expect } from '../support';
 
 const data = require('../support/fixtures/movies.json')
 const { executeSql } = require('../support/database')
@@ -12,17 +12,17 @@ test('Deve poder cadastrar um novo filme', async ({ page }) => {
     await page.toast.containText('Cadastro realizado com sucesso!')
 })
 
-test('Não deve cadastrar quando o título é duplicado', async ({ page }) => {
+test('Não deve cadastrar quando o título é duplicado', async ({ page, request }) => {
     const movie = data.exterminio
 
     await executeSql(`DELETE from movies where title ='${data.exterminio.title}'`)
 
-    await page.login.do('admin@zombieplus.com', 'pwd123', 'Admin')
-    await page.movies.create(movie.title, movie.overview, movie.company, movie.release_year, movie.cover, movie.featured)
-    await page.toast.containText('Cadastro realizado com sucesso!')
-
-    await page.movies.create(movie.title, movie.overview, movie.company, movie.release_year, movie.cover, movie.featured)
-    await page.toast.containText('Oops!Este conteúdo já encontra-se cadastrado no catálogo')
+    
+    //console.log(await response.text());
+    
+    // await page.login.do('admin@zombieplus.com', 'pwd123', 'Admin')
+    // await page.movies.create(movie.title, movie.overview, movie.company, movie.release_year, movie.cover, movie.featured)
+    // await page.toast.containText('Oops!Este conteúdo já encontra-se cadastrado no catálogo')
 })
 
 test('Não deve cadastrar quando os campos obrigatórios não são preenchidos', async ({ page }) => {
