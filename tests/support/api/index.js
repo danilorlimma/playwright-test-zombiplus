@@ -1,4 +1,4 @@
-import { expect,request } from "playwright/test"
+import { expect, request } from "playwright/test"
 export class Api {
     constructor(request) {
         this.request = request
@@ -18,5 +18,23 @@ export class Api {
         this.token = body.token
         console.log(this.token)
         //console.log(body.token)
+    }
+    async setMovie(movie) {
+        const response = await this.request.post('http://localhost:3333/movies', {
+            headers: {
+                Authorization: 'Bearer ' +this.token,
+                ContentType: 'application/json, text/plain, */*',
+                Accept: 'apli'
+            },
+            multipart: {
+                title: movie.title,
+                overview: movie.overview,
+                featured: movie.featured,
+                release_year: movie.release_year,
+                company_id: '4c428746-8ea0-4113-beb8-1d8ed6cf3795'
+            }
+        })
+        expect (response.ok()).toBeTruthy()
+        
     }
 }

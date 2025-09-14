@@ -18,12 +18,12 @@ test('Não deve cadastrar quando o título é duplicado', async ({ page, request
     await executeSql(`DELETE from movies where title ='${data.exterminio.title}'`)
 
     await request.api.setToken()
-    
+    await request.api.setMovie(movie)
     //console.log(await response.text());
     
-    // await page.login.do('admin@zombieplus.com', 'pwd123', 'Admin')
-    // await page.movies.create(movie.title, movie.overview, movie.company, movie.release_year, movie.cover, movie.featured)
-    // await page.toast.containText('Oops!Este conteúdo já encontra-se cadastrado no catálogo')
+    await page.login.do('admin@zombieplus.com', 'pwd123', 'Admin')
+    await page.movies.create(movie.title, movie.overview, movie.company, movie.release_year, movie.cover, movie.featured)
+    await page.toast.containText('Oops!Este conteúdo já encontra-se cadastrado no catálogo')
 })
 
 test('Não deve cadastrar quando os campos obrigatórios não são preenchidos', async ({ page }) => {
