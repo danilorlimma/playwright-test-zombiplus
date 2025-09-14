@@ -20,6 +20,7 @@ export class Api {
         //console.log(body.token)
     }
     async setMovie(movie) {
+       await this.setToken()
         const response = await this.request.post('http://localhost:3333/movies', {
             headers: {
                 Authorization: 'Bearer ' +this.token,
@@ -35,6 +36,6 @@ export class Api {
             }
         })
         expect (response.ok()).toBeTruthy()
-        
+
     }
 }

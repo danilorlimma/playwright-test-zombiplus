@@ -17,7 +17,7 @@ test('Não deve cadastrar quando o título é duplicado', async ({ page, request
 
     await executeSql(`DELETE from movies where title ='${data.exterminio.title}'`)
 
-    await request.api.setToken()
+    //await request.api.setToken()
     await request.api.setMovie(movie)
     //console.log(await response.text());
     
