@@ -19,7 +19,7 @@ export class Api {
         console.log(this.token)
         //console.log(body.token)
     }
-    async setMovie(movie) {
+    async postMovie(movie) {
        await this.setToken()
         const response = await this.request.post('http://localhost:3333/movies', {
             headers: {
