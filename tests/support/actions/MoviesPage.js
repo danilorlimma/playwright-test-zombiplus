@@ -4,12 +4,7 @@ export class MoviesPage {
     constructor(page) {
         this.page = page
     }
-    async isLoggedIn() {
-        await expect(this.page.locator('a[href="/logout"]')).toBeVisible()
-        await this.page.waitForLoadState('networkidle')
-        await expect(this.page).toHaveURL(/.*admin/)
-    }
-    async create(title, overview, company, release_year) {
+        async create(title, overview, company, release_year) {
 
         await this.page.getByLabel('Titulo do filme').fill(title)
         await this.page.getByLabel('Sinopse').fill(overview)
