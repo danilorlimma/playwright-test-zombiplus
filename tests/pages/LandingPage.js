@@ -30,4 +30,7 @@ export class LandingPage {
     async alertHaveText(target){
         await expect(this.page.locator('.alert')).toHaveText(target)
     }
+    async haveTitle(message){
+        await expect(this.page).toHaveTitle(message)
+    }
 }

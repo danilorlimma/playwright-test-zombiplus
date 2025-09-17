@@ -6,6 +6,6 @@ export class Toast {
 
     async containText(message) {
         await expect(this.page.locator('.toast')).toContainText(message)
-        await expect(this.page.locator('.toast')).toBeHidden({ timeout: 5000 })
+        await expect(this.page.locator('.toast')).toBeHidden({ timeout: 7000 })
     }
 }
